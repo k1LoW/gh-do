@@ -22,17 +22,23 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 
+	"github.com/cli/safeexec"
 	"github.com/k1LoW/gh-do/version"
 	"github.com/k1LoW/go-github-client/v52/factory"
 	"github.com/spf13/cobra"
 )
 
-var host string
+var (
+	host     string
+	insecure bool
+)
 
 var rootCmd = &cobra.Command{
 	Use:          "gh-do",
@@ -46,6 +52,13 @@ var rootCmd = &cobra.Command{
 		}
 		os.Setenv("GH_HOST", host)
 		token, v3ep, _, v4ep, host, _, _ := factory.GetAllDetected()
+		if !insecure {
+			sectoken, err := tokenFromSecureStorage(host)
+			if err != nil {
+				return fmt.Errorf("failed to get credentials for %s: %w", host, err)
+			}
+			token = sectoken
+		}
 
 		if token == "" {
 			return fmt.Errorf("failed to get credentials for %s", host)
@@ -109,4 +122,25 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolP("help", "", false, "") // disable -h for help
 	rootCmd.Flags().StringVarP(&host, "hostname", "h", "", "The hostname of the GitHub instance to do")
+	rootCmd.Flags().BoolVarP(&insecure, "insecure", "", false, "Use insecure credentials")
+}
+
+func tokenFromSecureStorage(host string) (string, error) {
+	var err error
+	gh := os.Getenv("GH_PATH")
+	if gh == "" {
+		gh, err = safeexec.LookPath("gh")
+		if err != nil {
+			return "", err
+		}
+	}
+	stdout := new(bytes.Buffer)
+	stderr := new(bytes.Buffer)
+	cmd := exec.Command(gh, "auth", "token", "--secure-storage", "--hostname", host)
+	cmd.Stdout = stdout
+	cmd.Stderr = stderr
+	if err := cmd.Run(); err != nil {
+		return "", errors.New(strings.TrimSpace(stderr.String()))
+	}
+	return strings.TrimSpace(stdout.String()), nil
 }

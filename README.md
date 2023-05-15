@@ -2,6 +2,11 @@
 
 :octocat: gh-do is a tool to do anything using GitHub credentials.
 
+Key features of `gh-do` are:
+
+- **Use only credentials stored in secure storage by default**
+- **Set various environment variables for using GitHub API at once**
+
 ## As a GitHub CLI extension
 
 ### Usage
@@ -87,4 +92,12 @@ $ go install github.com/k1LoW/gh-do/cmd/gh-do@latest
 
 ```console
 $ docker pull ghcr.io/k1low/gh-do:latest
+```
+
+## Use insecure credentials
+
+If using credentials (environment variables, config files) that are not stored in secure storage, the `--insecure` option must be given.
+
+``` console
+$ gh do --insecure
 ```

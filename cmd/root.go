@@ -47,6 +47,10 @@ var rootCmd = &cobra.Command{
 		os.Setenv("GH_HOST", host)
 		token, v3ep, _, v4ep, host, _, _ := factory.GetAllDetected()
 
+		if token == "" {
+			return fmt.Errorf("failed to get credentials for %s", host)
+		}
+
 		// Clear environment variables for GitHub
 		os.Unsetenv("GH_HOST")
 		os.Unsetenv("GH_TOKEN")

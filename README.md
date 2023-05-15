@@ -31,15 +31,15 @@ $ gh extension install k1LoW/gh-do
 Run `gh-do` instead of `gh setup`.
 
 ``` console
-$ gh-do --hostname git.example.com
-export GH_HOST=git.example.com
+$ gh-do --hostname enterprise.internal
+export GH_HOST=enterprise.internal
 export GH_TOKEN=gho_yyyyyYYYYYYYYyyyyyyyYYYYYYYYYyyYYyyy
 export GH_ENTERPRISE_TOKEN=gho_yyyyyYYYYYYYYyyyyyyyYYYYYYYYYyyYYyyy
 export GITHUB_ENTERPRISE_TOKEN=gho_yyyyyYYYYYYYYyyyyyyyYYYYYYYYYyyYYyyy
 export GITHUB_TOKEN=gho_yyyyyYYYYYYYYyyyyyyyYYYYYYYYYyyYYyyy
-export GITHUB_API_URL=https://git.example.com/api/v3
-export GITHUB_GRAPHQL_URL=https://git.example.com/api/graphql
-$ gh-do --hostname git.example.com -- any-command # Set environment variables for git.example.com
+export GITHUB_API_URL=https://enterprise.internal/api/v3
+export GITHUB_GRAPHQL_URL=https://enterprise.internal/api/graphql
+$ gh-do --hostname enterprise.internal -- any-command # Set environment variables for enterprise.internal
 ```
 
 ### Install

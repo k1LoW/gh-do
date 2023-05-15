@@ -53,6 +53,8 @@ var rootCmd = &cobra.Command{
 		os.Unsetenv("GH_ENTERPRISE_TOKEN")
 		os.Unsetenv("GITHUB_ENTERPRISE_TOKEN")
 		os.Unsetenv("GITHUB_TOKEN")
+		os.Unsetenv("GITHUB_API_URL")
+		os.Unsetenv("GITHUB_GRAPHQL_URL")
 
 		var etoken string
 		if !strings.Contains(host, "github.com") {

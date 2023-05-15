@@ -107,5 +107,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().StringVarP(&host, "host", "", "", "host")
+	rootCmd.Flags().BoolP("help", "", false, "") // disable -h for help
+	rootCmd.Flags().StringVarP(&host, "hostname", "h", "", "The hostname of the GitHub instance to do")
 }

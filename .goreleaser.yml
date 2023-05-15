@@ -1,0 +1,78 @@
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+builds:
+-
+  id: gh-do-linux
+  env:
+    - CGO_ENABLED=0
+  goos:
+    - linux
+  goarch:
+    - amd64
+  main: ./cmd/gh-do/main.go
+  ldflags:
+    - -s -w -X github.com/k1LoW/gh-do.version={{.Version}} -X github.com/k1LoW/gh-do.commit={{.FullCommit}} -X github.com/k1LoW/gh-do.date={{.Date}} -X github.com/k1LoW/gh-do/version.Version={{.Version}}
+-
+  id: gh-do-darwin
+  env:
+    - CGO_ENABLED=0
+  goos:
+    - darwin
+  goarch:
+    - amd64
+    - arm64
+  main: ./cmd/gh-do/main.go
+  ldflags:
+    - -s -w -X github.com/k1LoW/gh-do.version={{.Version}} -X github.com/k1LoW/gh-do.commit={{.FullCommit}} -X github.com/k1LoW/gh-do.date={{.Date}} -X github.com/k1LoW/gh-do/version.Version={{.Version}}
+-
+  id: gh-do-windows
+  env:
+    - CGO_ENABLED=0
+  goos:
+    - windows
+  goarch:
+    - amd64
+  main: ./cmd/gh-do/main.go
+  ldflags:
+    - -s -w -X github.com/k1LoW/gh-do.version={{.Version}} -X github.com/k1LoW/gh-do.commit={{.FullCommit}} -X github.com/k1LoW/gh-do.date={{.Date}} -X github.com/k1LoW/gh-do/version.Version={{.Version}}
+archives:
+-
+  id: gh-do-archive
+  name_template: '{{ .ProjectName }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  format_overrides:
+    - goos: darwin
+      format: zip
+  files:
+    - LICENSE
+    - CREDITS
+    - README.md
+    - CHANGELOG.md
+  rlcp: true
+-
+  id: gh-do-binary
+  name_template: '{{ .Binary }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  format: binary
+  rlcp: true
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Version }}-next"
+changelog:
+  skip: true
+nfpms:
+  - id: gh-do-nfpms
+    file_name_template: "{{ .ProjectName }}_{{ .Version }}-1_{{ .Arch }}"
+    builds:
+      - gh-do-linux
+    homepage: https://github.com/k1LoW/gh-do
+    maintainer: Ken'ichiro Oyama <k1lowxb@gmail.com>
+    description: gh-do is a tool to do anything using GitHub credentials.
+    license: MIT
+    formats:
+      - apk
+      - deb
+      - rpm
+    bindir: /usr/bin
+    epoch: 1

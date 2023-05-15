@@ -47,23 +47,23 @@ $ gh-do --host git.example.com -- any-command # Set environment variables for gi
 **deb:**
 
 ``` console
-$ export GH_SETUP_VERSION=X.X.X
-$ curl -o gh-do.deb -L https://github.com/k1LoW/gh-do/releases/download/v$GH_SETUP_VERSION/gh-do_$GH_SETUP_VERSION-1_amd64.deb
+$ export GH_DO_VERSION=X.X.X
+$ curl -o gh-do.deb -L https://github.com/k1LoW/gh-do/releases/download/v$GH_DO_VERSION/gh-do_$GH_DO_VERSION-1_amd64.deb
 $ dpkg -i gh-do.deb
 ```
 
 **RPM:**
 
 ``` console
-$ export GH_SETUP_VERSION=X.X.X
-$ yum install https://github.com/k1LoW/gh-do/releases/download/v$GH_SETUP_VERSION/gh-do_$GH_SETUP_VERSION-1_amd64.rpm
+$ export GH_DO_VERSION=X.X.X
+$ yum install https://github.com/k1LoW/gh-do/releases/download/v$GH_DO_VERSION/gh-do_$GH_DO_VERSION-1_amd64.rpm
 ```
 
 **apk:**
 
 ``` console
-$ export GH_SETUP_VERSION=X.X.X
-$ curl -o gh-do.apk -L https://github.com/k1LoW/gh-do/releases/download/v$GH_SETUP_VERSION/gh-do_$GH_SETUP_VERSION-1_amd64.apk
+$ export GH_DO_VERSION=X.X.X
+$ curl -o gh-do.apk -L https://github.com/k1LoW/gh-do/releases/download/v$GH_DO_VERSION/gh-do_$GH_DO_VERSION-1_amd64.apk
 $ apk add gh-do.apk
 ```
 

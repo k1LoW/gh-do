@@ -55,7 +55,7 @@ var rootCmd = &cobra.Command{
 		if !insecure {
 			sectoken, err := tokenFromSecureStorage(host)
 			if err != nil {
-				return fmt.Errorf("failed to get credentials for %s: %w", host, err)
+				return fmt.Errorf("failed to get credentials stored in secure storage for %s: %w", host, err)
 			}
 			token = sectoken
 		}

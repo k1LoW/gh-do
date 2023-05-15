@@ -1,6 +1,6 @@
 # gh-do
 
-:octocat: gh-do is a tool to do anything using GitHub credentials.
+:octocat: `gh-do` (or `gh do`) is a tool to do anything using GitHub credentials.
 
 Key features of `gh-do` are:
 

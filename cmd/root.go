@@ -38,6 +38,7 @@ import (
 var (
 	host     string
 	insecure bool
+	cenvs    []string
 )
 
 var rootCmd = &cobra.Command{
@@ -86,17 +87,23 @@ var rootCmd = &cobra.Command{
 			cmd.Printf("export GITHUB_TOKEN=%s\n", token)
 			cmd.Printf("export GITHUB_API_URL=%s\n", v3ep)
 			cmd.Printf("export GITHUB_GRAPHQL_URL=%s\n", v4ep)
+			for _, e := range cenvs {
+				cmd.Printf("export %s=%s\n", e, token)
+			}
 			return nil
 		}
 
 		envs := os.Environ()
-		envs = append(envs, fmt.Sprintf("export GH_HOST=%s\n", host))
-		envs = append(envs, fmt.Sprintf("export GH_TOKEN=%s\n", token))
-		envs = append(envs, fmt.Sprintf("export GH_ENTERPRISE_TOKEN=%s\n", etoken))
-		envs = append(envs, fmt.Sprintf("export GITHUB_ENTERPRISE_TOKEN=%s\n", etoken))
-		envs = append(envs, fmt.Sprintf("export GITHUB_TOKEN=%s\n", token))
-		envs = append(envs, fmt.Sprintf("export GITHUB_API_URL=%s\n", v3ep))
-		envs = append(envs, fmt.Sprintf("export GITHUB_GRAPHQL_URL=%s\n", v4ep))
+		envs = append(envs, fmt.Sprintf("GH_HOST=%s", host))
+		envs = append(envs, fmt.Sprintf("GH_TOKEN=%s", token))
+		envs = append(envs, fmt.Sprintf("GH_ENTERPRISE_TOKEN=%s", etoken))
+		envs = append(envs, fmt.Sprintf("GITHUB_ENTERPRISE_TOKEN=%s", etoken))
+		envs = append(envs, fmt.Sprintf("GITHUB_TOKEN=%s", token))
+		envs = append(envs, fmt.Sprintf("GITHUB_API_URL=%s", v3ep))
+		envs = append(envs, fmt.Sprintf("GITHUB_GRAPHQL_URL=%s", v4ep))
+		for _, e := range cenvs {
+			envs = append(envs, fmt.Sprintf("%s=%s", e, token))
+		}
 		command := args[0]
 		c := exec.Command(command, args[1:]...)
 		c.Stdout = os.Stdout
@@ -123,6 +130,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "", false, "") // disable -h for help
 	rootCmd.Flags().StringVarP(&host, "hostname", "h", "", "The hostname of the GitHub instance to do")
 	rootCmd.Flags().BoolVarP(&insecure, "insecure", "", false, "Use insecure credentials")
+	rootCmd.Flags().StringSliceVarP(&cenvs, "credential-env-key", "e", []string{}, "Set credential to specified env key")
 }
 
 func tokenFromSecureStorage(host string) (string, error) {

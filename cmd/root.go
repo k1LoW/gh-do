@@ -127,10 +127,10 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("help", "", false, "") // disable -h for help
-	rootCmd.Flags().StringVarP(&host, "hostname", "h", "", "The hostname of the GitHub instance to do")
-	rootCmd.Flags().BoolVarP(&insecure, "insecure", "", false, "Use insecure credentials")
-	rootCmd.Flags().StringSliceVarP(&cenvs, "credential-env-key", "e", []string{}, "Set credential to specified env key")
+	rootCmd.Flags().BoolP("help", "", false, "help for gh-do") // disable `-h` for help
+	rootCmd.Flags().StringVarP(&host, "hostname", "h", "", "the hostname of the GitHub instance to do")
+	rootCmd.Flags().BoolVarP(&insecure, "insecure", "", false, "use insecure credentials")
+	rootCmd.Flags().StringSliceVarP(&cenvs, "credential-env-key", "e", []string{}, "set credential to specified env key")
 }
 
 func tokenFromSecureStorage(host string) (string, error) {

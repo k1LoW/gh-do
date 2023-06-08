@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.3.3](https://github.com/k1LoW/gh-do/compare/v0.3.2...v0.3.3) - 2023-06-08
+
 ## [v0.3.2](https://github.com/k1LoW/gh-do/compare/v0.3.1...v0.3.2) - 2023-05-31
 - Fix setting bug by @k1LoW in https://github.com/k1LoW/gh-do/pull/12
 

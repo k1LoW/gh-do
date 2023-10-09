@@ -78,6 +78,12 @@ $ apk add gh-do.apk
 $ brew install k1LoW/tap/gh-do
 ```
 
+**[aqua](https://aquaproj.github.io/):**
+
+```console
+$ aqua g -i k1LoW/gh-do
+```
+
 **manually:**
 
 Download binary from [releases page](https://github.com/k1LoW/gh-do/releases)

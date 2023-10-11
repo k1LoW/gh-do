@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.3.4](https://github.com/k1LoW/gh-do/compare/v0.3.3...v0.3.4) - 2023-10-11
+- docs: add the installation guide with aqua by @suzuki-shunsuke in https://github.com/k1LoW/gh-do/pull/17
+- Bump golang.org/x/net from 0.10.0 to 0.17.0 by @dependabot in https://github.com/k1LoW/gh-do/pull/19
+
 ## [v0.3.3](https://github.com/k1LoW/gh-do/compare/v0.3.2...v0.3.3) - 2023-06-08
 
 ## [v0.3.2](https://github.com/k1LoW/gh-do/compare/v0.3.1...v0.3.2) - 2023-05-31

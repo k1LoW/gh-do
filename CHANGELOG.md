@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.3.5](https://github.com/k1LoW/gh-do/compare/v0.3.4...v0.3.5) - 2023-12-19
+- Bump golang.org/x/crypto from 0.14.0 to 0.17.0 by @dependabot in https://github.com/k1LoW/gh-do/pull/20
+
 ## [v0.3.4](https://github.com/k1LoW/gh-do/compare/v0.3.3...v0.3.4) - 2023-10-11
 - docs: add the installation guide with aqua by @suzuki-shunsuke in https://github.com/k1LoW/gh-do/pull/17
 - Bump golang.org/x/net from 0.10.0 to 0.17.0 by @dependabot in https://github.com/k1LoW/gh-do/pull/19

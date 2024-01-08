@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.3.6](https://github.com/k1LoW/gh-do/compare/v0.3.5...v0.3.6) - 2024-01-08
+- Bump github.com/cloudflare/circl from 1.3.3 to 1.3.7 by @dependabot in https://github.com/k1LoW/gh-do/pull/22
+
 ## [v0.3.5](https://github.com/k1LoW/gh-do/compare/v0.3.4...v0.3.5) - 2023-12-19
 - Bump golang.org/x/crypto from 0.14.0 to 0.17.0 by @dependabot in https://github.com/k1LoW/gh-do/pull/20
 

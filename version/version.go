@@ -4,4 +4,4 @@ package version
 const Name string = "gh-do"
 
 // Version for this
-var Version = "0.3.5"
+var Version = "0.3.6"

@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.4.0](https://github.com/k1LoW/gh-do/compare/v0.3.11...v0.4.0) - 2024-01-25
+- Update pkgs by @k1LoW in https://github.com/k1LoW/gh-do/pull/32
+
 ## [v0.3.11](https://github.com/k1LoW/gh-do/compare/v0.3.10...v0.3.11) - 2024-01-25
 - Use gh api by @k1LoW in https://github.com/k1LoW/gh-do/pull/30
 

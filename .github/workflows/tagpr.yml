@@ -53,6 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Release
-        run: gh release edit ${{ needs.tagpr.outputs.tagpr-tag }} --repo ${{ github.repository }} --draft=false --latest
+        run: |
+          gh api /repos/${{ github.repository }}/releases/generate-notes -f tag_name=${{ needs.tagpr.outputs.tagpr-tag }} --jq .body | gh release edit ${{ needs.tagpr.outputs.tagpr-tag }} --repo ${{ github.repository }} --draft=false --latest --notes-file=-
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

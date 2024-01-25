@@ -13,7 +13,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check out source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -24,21 +24,13 @@ jobs:
         name: Run tagpr
         uses: Songmu/tagpr@v1
 
-      - uses: haya14busa/action-update-semver@v1
-        if: "steps.run-tagpr.outputs.tag != ''"
-        with:
-          major_version_tag_only: true
-          tag: ${{ steps.run-tagpr.outputs.tag }}
-
-  release:
+  draft:
     needs: tagpr
     if: needs.tagpr.outputs.tagpr-tag != ''
     runs-on: macos-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check out source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -47,58 +39,17 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Setup goreleaser
-        run: |
-          brew install goreleaser
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          distribution: goreleaser
+          version: latest
+          args: --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release
-        run: |
-          make release
-
-  dockerimage:
-    needs: tagpr
-    if: needs.tagpr.outputs.tagpr-tag != ''
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+    needs: draft
     steps:
-      - name: Check out source code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Get latest version
-        id: latest_version
-        run: |
-          echo -n 'version=' > $GITHUB_OUTPUT
-          gh release list --limit 1 | cut -f 1 >> $GITHUB_OUTPUT
-          cat $GITHUB_OUTPUT
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Login to ghcr.io
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/k1low/gh-do:${{ steps.latest_version.outputs.version }}
-            ghcr.io/k1low/gh-do:latest
-          labels: |
-            org.opencontainers.image.name=gh-do
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.version=${{ steps.latest_version.outputs.version }}
-            org.opencontainers.image.source=https://github.com/k1LoW/gh-do
+      - name: Release
+        run: gh release edit ${{ needs.tagpr.outputs.tagpr-tag }} --draft=false --latest

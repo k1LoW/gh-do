@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.3.8](https://github.com/k1LoW/gh-do/compare/v0.3.7...v0.3.8) - 2024-01-25
+- Fix CD by @k1LoW in https://github.com/k1LoW/gh-do/pull/26
+
 ## [v0.3.7](https://github.com/k1LoW/gh-do/compare/v0.3.6...v0.3.7) - 2024-01-25
 - Fix CD pipeline by @k1LoW in https://github.com/k1LoW/gh-do/pull/24
 

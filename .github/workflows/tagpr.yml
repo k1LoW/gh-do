@@ -54,3 +54,5 @@ jobs:
     steps:
       - name: Release
         run: gh release edit ${{ needs.tagpr.outputs.tagpr-tag }} --draft=false --latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

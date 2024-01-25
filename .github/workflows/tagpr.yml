@@ -53,6 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Release
-        run: gh release edit ${{ needs.tagpr.outputs.tagpr-tag }} --draft=false --latest
+        run: gh release edit ${{ needs.tagpr.outputs.tagpr-tag }} --repo ${{ github.repository }} --draft=false --latest
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -31,7 +31,7 @@ import (
 
 	"github.com/cli/safeexec"
 	"github.com/k1LoW/gh-do/version"
-	"github.com/k1LoW/go-github-client/v52/factory"
+	"github.com/k1LoW/go-github-client/v58/factory"
 	"github.com/spf13/cobra"
 )
 

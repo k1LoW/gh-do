@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.3.7](https://github.com/k1LoW/gh-do/compare/v0.3.6...v0.3.7) - 2024-01-25
+- Fix CD pipeline by @k1LoW in https://github.com/k1LoW/gh-do/pull/24
+
 ## [v0.3.6](https://github.com/k1LoW/gh-do/compare/v0.3.5...v0.3.6) - 2024-01-08
 - Bump github.com/cloudflare/circl from 1.3.3 to 1.3.7 by @dependabot in https://github.com/k1LoW/gh-do/pull/22
 

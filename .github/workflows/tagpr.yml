@@ -49,7 +49,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release:
-    needs: draft
+    needs: [draft, tagpr]
     runs-on: ubuntu-latest
     steps:
       - name: Release

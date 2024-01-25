@@ -11,6 +11,7 @@ builds:
     - linux
   goarch:
     - amd64
+    - arm64
   main: ./cmd/gh-do/main.go
   ldflags:
     - -s -w -X github.com/k1LoW/gh-do.version={{.Version}} -X github.com/k1LoW/gh-do.commit={{.FullCommit}} -X github.com/k1LoW/gh-do.date={{.Date}} -X github.com/k1LoW/gh-do/version.Version={{.Version}}
@@ -76,3 +77,5 @@ nfpms:
       - rpm
     bindir: /usr/bin
     epoch: 1
+release:
+  draft: true

@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.5.0](https://github.com/k1LoW/gh-do/compare/v0.4.0...v0.5.0) - 2024-05-23
+- Accept stdin for interactive commands by @k1LoW in https://github.com/k1LoW/gh-do/pull/34
+
 ## [v0.4.0](https://github.com/k1LoW/gh-do/compare/v0.3.11...v0.4.0) - 2024-01-25
 - Update pkgs by @k1LoW in https://github.com/k1LoW/gh-do/pull/32
 

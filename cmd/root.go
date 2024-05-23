@@ -106,6 +106,7 @@ var rootCmd = &cobra.Command{
 		}
 		command := args[0]
 		c := exec.Command(command, args[1:]...)
+		c.Stdin = os.Stdin
 		c.Stdout = os.Stdout
 		c.Stderr = os.Stderr
 		c.Env = envs

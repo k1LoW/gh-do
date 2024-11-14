@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.5.1](https://github.com/k1LoW/gh-do/compare/v0.5.0...v0.5.1) - 2024-11-14
+- Bump github.com/golang-jwt/jwt/v4 from 4.5.0 to 4.5.1 by @dependabot in https://github.com/k1LoW/gh-do/pull/36
+
 ## [v0.5.0](https://github.com/k1LoW/gh-do/compare/v0.4.0...v0.5.0) - 2024-05-23
 - Accept stdin for interactive commands by @k1LoW in https://github.com/k1LoW/gh-do/pull/34
 

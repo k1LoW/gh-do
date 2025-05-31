@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.5.4](https://github.com/k1LoW/gh-do/compare/v0.5.3...v0.5.4) - 2025-05-31
+- Bump github.com/cli/go-gh/v2 from 2.11.1 to 2.12.1 by @dependabot in https://github.com/k1LoW/gh-do/pull/42
+
 ## [v0.5.3](https://github.com/k1LoW/gh-do/compare/v0.5.2...v0.5.3) - 2025-03-22
 - Bump github.com/golang-jwt/jwt/v4 from 4.5.1 to 4.5.2 by @dependabot in https://github.com/k1LoW/gh-do/pull/40
 

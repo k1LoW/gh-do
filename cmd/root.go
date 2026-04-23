@@ -151,7 +151,7 @@ func tokenFromSecureStorage(host, user string) (string, error) {
 	if user != "" {
 		args = append(args, "--user", user)
 	}
-	cmd := exec.Command(gh, args...)
+	cmd := exec.Command(gh, args...) //nolint:gosec // gh is the resolved path to the GitHub CLI binary, not user input
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
 	if err := cmd.Run(); err != nil {

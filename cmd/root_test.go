@@ -44,7 +44,7 @@ func TestTokenFromSecureStorage(t *testing.T) {
 			argsFile := filepath.Join(dir, "args")
 			scriptPath := filepath.Join(dir, "gh")
 			script := "#!/bin/sh\nprintf '%s\\n' \"$@\" > " + argsFile + "\necho fake-token\n"
-			if err := os.WriteFile(scriptPath, []byte(script), 0o755); err != nil {
+			if err := os.WriteFile(scriptPath, []byte(script), 0o755); err != nil { //nolint:gosec // executable permission is required for the fake shell script
 				t.Fatal(err)
 			}
 			t.Setenv("GH_PATH", scriptPath)
@@ -76,7 +76,7 @@ func TestTokenFromSecureStorageError(t *testing.T) {
 	dir := t.TempDir()
 	scriptPath := filepath.Join(dir, "gh")
 	script := "#!/bin/sh\necho 'boom' >&2\nexit 1\n"
-	if err := os.WriteFile(scriptPath, []byte(script), 0o755); err != nil {
+	if err := os.WriteFile(scriptPath, []byte(script), 0o755); err != nil { //nolint:gosec // executable permission is required for the fake shell script
 		t.Fatal(err)
 	}
 	t.Setenv("GH_PATH", scriptPath)

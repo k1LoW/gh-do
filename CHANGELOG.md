@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.0](https://github.com/k1LoW/gh-do/compare/v0.5.4...v0.6.0) - 2026-04-23
+- chore: setup tagpr labels by @k1LoW in https://github.com/k1LoW/gh-do/pull/45
+- feat: add --user option to select account for token retrieval by @buty4649 in https://github.com/k1LoW/gh-do/pull/47
+
 ## [v0.5.4](https://github.com/k1LoW/gh-do/compare/v0.5.3...v0.5.4) - 2025-05-31
 - Bump github.com/cli/go-gh/v2 from 2.11.1 to 2.12.1 by @dependabot in https://github.com/k1LoW/gh-do/pull/42
 

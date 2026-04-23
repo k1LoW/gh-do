@@ -37,6 +37,7 @@ import (
 
 var (
 	host     string
+	user     string
 	insecure bool
 	cenvs    []string
 )
@@ -54,7 +55,7 @@ var rootCmd = &cobra.Command{
 		os.Setenv("GH_HOST", host)
 		token, v3ep, _, v4ep, host, _, _ := factory.GetAllDetected()
 		if !insecure {
-			sectoken, err := tokenFromSecureStorage(host)
+			sectoken, err := tokenFromSecureStorage(host, user)
 			if err != nil {
 				return fmt.Errorf("failed to get credentials stored in secure storage for %s: %w", host, err)
 			}
@@ -130,11 +131,12 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolP("help", "", false, "help for gh-do") // disable `-h` for help
 	rootCmd.Flags().StringVarP(&host, "hostname", "h", "", "the hostname of the GitHub instance to do")
+	rootCmd.Flags().StringVarP(&user, "user", "u", "", "the account to output the token for")
 	rootCmd.Flags().BoolVarP(&insecure, "insecure", "", false, "use insecure credentials")
 	rootCmd.Flags().StringSliceVarP(&cenvs, "credential-env-key", "e", []string{}, "set credential to specified env key")
 }
 
-func tokenFromSecureStorage(host string) (string, error) {
+func tokenFromSecureStorage(host, user string) (string, error) {
 	var err error
 	gh := os.Getenv("GH_PATH")
 	if gh == "" {
@@ -145,7 +147,11 @@ func tokenFromSecureStorage(host string) (string, error) {
 	}
 	stdout := new(bytes.Buffer)
 	stderr := new(bytes.Buffer)
-	cmd := exec.Command(gh, "auth", "token", "--secure-storage", "--hostname", host)
+	args := []string{"auth", "token", "--secure-storage", "--hostname", host}
+	if user != "" {
+		args = append(args, "--user", user)
+	}
+	cmd := exec.Command(gh, args...)
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
 	if err := cmd.Run(); err != nil {
